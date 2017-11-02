@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Anthony Woodcroft - Projects Website</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/one-page-wonder.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/garage.css">
+
+    <script src="js/garageScript.js"></script>
+</head>
+
+<body class="custom-body">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Anthony Woodcroft</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" style="text-decoration: none;">Projects
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="textbasedadventure.html">Java Text Based Adventure Game</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="garageProject.html">JavaScript Garage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="kingSearch.html">JavaScript King Search</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://awoodcroft95.github.io/index.html">Old Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead">
+        <div class="overlay">
+            <div class="container">
+                <h1 class="display-1 text-white">Anthony Woodcroft</h1>
+                <h2 class="display-4 text-white">Programming Projects</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Code Goes In Here -->
+
+    <div class="page-body">
+        <h2>JavaScript Garage Project</h2>
+        <p>
+            This task was to create a webpage simulated a garage checking in and out cars and and getting quotes for damage.
+        </p>
+        <div id="wrapper">
+            <section>
+                <h1>Garage</h1>
+                <br>
+                <div id="carsToAdd">
+                    <h4>Possible Cars to Add</h4>
+                    <select name="cars" id="carSelectIn" onmouseup="changeLicencePlateText('genLicenceFromListIn', 'carSelectIn')">
+                        <option value="Volvo-CS15 NET-4-3">Volvo</option>
+                        <option value="Saab-BG98 KJF-4-5">Saab</option>
+                        <option value="Fiat-MJ26 LAS-4-2">Fiat</option>
+                        <option value="Audi-AD34 HBR-3-1">Audi</option>
+                    </select>
+                    <br> Licence Plate of Selected Car
+                    <p id='genLicenceFromListIn'></p>
+                </div>
+                <div id="carsToRemove">
+                    <h4>Possible Cars to Remove</h4>
+                    <select name="cars" id="carSelectOut" onmouseup="changeLicencePlateText('genLicenceFromListOut', 'carSelectOut')">
+                    </select>
+                    <br> Licence Plate of Selected Car
+                    <p id='genLicenceFromListOut'></p>
+                </div>
+
+
+
+                <div id="carsToAdd">
+                    <h3>Check In</h3>
+                    Licence Plate
+                    <br>
+                    <button type="button" onclick="checkInCar()">Confirm Check In</button>
+                    <br>
+                </div>
+                <div id="carsToRemove">
+                    <h3>Check Out</h3>
+                    Licence Plate
+                    <br>
+                    <button type="button" onclick="checkOutCar()">Confirm Check Out</button>
+                    <br>
+                </div>
+                <div id="outputsDiv">
+                    <br><br>
+                    <div>
+                        <h3>Output</h3>
+                        <button type="button" onclick="outputContents()">Output Garage Contents</button>
+                        <div id="output">
+
+                        </div>
+                    </div>
+                    <div>
+                        <H3>Calculate Bill</H3>
+                        <p>Select car from checkout list.</p>
+                        <button onclick="billToPage()">Calculate bill</button>
+                        <div id="billOutput"></div>
+                    </div>
+                </div>
+                <br>
+            </section>
+            <hr>
+            <section>
+                <br>
+                <h1>Car Creator</h1>
+                <br>
+                <div id="carCreator">
+                    Car Make
+                    <br>
+                    <input type="text" id="carMakeIn">
+                    <br> Car Licence Plate
+                    <br>
+                    <input type="text" id="licencePlateIn">
+                    <br> Number of Wheels
+                    <br>
+                    <input type="number" id="numWheelsIn">
+                    <br> Number of Faults
+                    <br>
+                    <input type="number" id="faultsIn">
+                    <br>
+                    <button type="button" id="carCreatorConfirm" onclick="makeNewCar()">Confirm Car Creation</button>
+                    <br> Add most recent car to 'Possible Cars to Add'
+                    <br>
+                    <button type="button" id="newCarToDrop" onclick="addNewCarToOptions()">Add Car</button>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Anthony Woodcroft 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

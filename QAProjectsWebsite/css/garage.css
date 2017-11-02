@@ -1,0 +1,30 @@
+#carsToRemove {
+    margin-left: 30%;
+}
+
+#carsToAdd {
+    width:70%;
+    float: left;
+}
+
+#pageDivider {
+    background-color: black;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px
+}
+
+#carCreator{
+    text-align: center;
+}
+
+#outputsDiv{
+    text-align: center;
+}
