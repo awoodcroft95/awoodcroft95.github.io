@@ -53,6 +53,7 @@ header.masthead>.overlay {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
+  padding: 15px;
 }
 
 #list5 { color:#606c71; padding: 0 100px;}
