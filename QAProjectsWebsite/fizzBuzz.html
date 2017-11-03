@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Anthony Woodcroft - Projects Website - Garage Project</title>
+    <title>Anthony Woodcroft - Projects Website - FizzBuzz</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -16,9 +16,34 @@
     <!-- Custom styles for this template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/garage.css">
+    <script type="text/javascript">
+        function fizzBuzz(countTo, div3, div5) {
+            let outputStr = "";
+            for (var i = 1; i <= countTo; i++) {
+                if (i % 3 == 0 && i % 5 == 0) {
+                    outputStr += div3 + div5 + "<br>";
+                }
+                else if (i % 3 == 0) {
+                    outputStr += div3 + "<br>";
+                }
+                else if (i % 5 == 0) {
+                    outputStr += div5 + "<br>";
+                }
+                else {
+                    outputStr += i + "<br>";
+                }
+            }
+            document.getElementById("output").innerHTML = outputStr;
+        }
 
-    <script src="js/garageScript.js"></script>
+        function userInput() {
+            let inputNum = parseInt(document.getElementById("input").value);
+            let inputFizz = document.getElementById("fizz").value;
+            let inputBuzz = document.getElementById("buzz").value;
+            fizzBuzz(inputNum, inputFizz, inputBuzz);
+        }
+    </script>
+
 </head>
 
 <body class="custom-body">
@@ -96,112 +121,24 @@
 
     <div class="page-body">
         <div id="centerAlign">
-            <h1>JavaScript Garage Project</h1>
-            <p>
-                This task was to create a webpage simulated a garage checking in and out cars and and getting quotes for damage.
-            </p>
+            <h1>FizzBuzz</h1>
+            This project was to use iteration to show the fizz buzz game. Enter how many time you want it to run. Then your first word
+            then your second word.
+            <div id="inputs">
+                <input type="number" id="input">
+                <br>
+                <input type="text" id="fizz">
+                <br>
+                <input type="text" id="buzz">
+                <br>
+                <button type="button" onclick="userInput()">FizzBuzz</button>
+            </div>
+            <div id="output">
+
+            </div>
         </div>
-        <div id="wrapper">
-            <section>
-                <h1>Garage</h1>
-                <br>
-                <div id="carsToAdd">
-                    <h4>Possible Cars to Add</h4>
-                    <select name="cars" id="carSelectIn" onmouseup="changeLicencePlateText('genLicenceFromListIn', 'carSelectIn')">
-                        <option value="Volvo-CS15 NET-4-3">Volvo</option>
-                        <option value="Saab-BG98 KJF-4-5">Saab</option>
-                        <option value="Fiat-MJ26 LAS-4-2">Fiat</option>
-                        <option value="Audi-AD34 HBR-3-1">Audi</option>
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListIn'></p>
-                </div>
-                <div id="carsToRemove">
-                    <h4>Possible Cars to Remove</h4>
-                    <select name="cars" id="carSelectOut" onmouseup="changeLicencePlateText('genLicenceFromListOut', 'carSelectOut')">
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListOut'></p>
-                </div>
-
-
-
-                <div id="carsToAdd">
-                    <h3>Check In</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkInCar()">Confirm Check In</button>
-                    <br>
-                </div>
-                <div id="carsToRemove">
-                    <h3>Check Out</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkOutCar()">Confirm Check Out</button>
-                    <br>
-                </div>
-                <div id="outputsDiv">
-                    <br>
-                    <br>
-                    <div>
-                        <h3>Output</h3>
-                        <button type="button" onclick="outputContents()">Output Garage Contents</button>
-                        <div id="output">
-
-                        </div>
-                    </div>
-                    <div>
-                        <H3>Calculate Bill</H3>
-                        <p>Select car from checkout list.</p>
-                        <button onclick="billToPage()">Calculate bill</button>
-                        <div id="billOutput"></div>
-                    </div>
-                </div>
-                <br>
-            </section>
-            <hr>
-            <section>
-                <br>
-                <h1>Car Creator</h1>
-                <br>
-                <div id="carCreator">
-                    Car Make
-                    <br>
-                    <input type="text" id="carMakeIn">
-                    <br> Car Licence Plate
-                    <br>
-                    <input type="text" id="licencePlateIn">
-                    <br> Number of Wheels
-                    <br>
-                    <input type="number" id="numWheelsIn">
-                    <br> Number of Faults
-                    <br>
-                    <input type="number" id="faultsIn">
-                    <br>
-                    <button type="button" id="carCreatorConfirm" onclick="makeNewCar()">Confirm Car Creation</button>
-                    <br> Add most recent car to 'Possible Cars to Add'
-                    <br>
-                    <button type="button" id="newCarToDrop" onclick="addNewCarToOptions()">Add Car</button>
-                </div>
-            </section>
-            <hr>
-            <section>
-                <div id="carCreator">
-                    <br>
-                    <br>
-                    <h1>Admin Interface</h1>
-                    <br>
-                    <div>
-                        <textarea type="text" name="commandLine" id="cliIn" cols="100" rows="10" onkeydown="if (event.keyCode == 13) commandWord()"></textarea>
-                    </div>
-                    <br>
-                    <div>Valid Command Words
-                        <br> 'check in', 'check out', 'output', 'create car'</div>
-                </div>
-            </section>
-        </div>
-
     </div>
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

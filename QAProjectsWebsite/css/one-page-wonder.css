@@ -56,7 +56,7 @@ header.masthead>.overlay {
   padding: 15px;
 }
 
-#list5 { color:#606c71; padding: 0 100px;}
+#list5 { color:#606c71; padding: 0 100px; text-align: left}
 #list5 ul { font-size:18px; }
 #list5 ul li { }
 #list5 ul li ul { padding:5px 0 5px 18px; font-size:15px; }

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Anthony Woodcroft - Projects Website - Garage Project</title>
+    <title>Anthony Woodcroft - Projects Website - DOM 1</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -16,9 +16,26 @@
     <!-- Custom styles for this template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/garage.css">
+    <script type="text/javascript">
+        function createParaElement() {
+            var p = document.createElement("p");
+            p.setAttribute("id", "para1");
+            var element = document.getElementById("div1");
+            var child = document.getElementById("input1");
+            element.insertBefore(p, child);
+        }
 
-    <script src="js/garageScript.js"></script>
+        function changeText() {
+            para = document.getElementById("para1");
+            para.innerHTML = document.getElementById("input1").value;
+        }
+
+        function deletePara() {
+            var parent = document.getElementById("div1");
+            parent.removeChild(document.getElementById("para1"));
+        }
+    </script>
+
 </head>
 
 <body class="custom-body">
@@ -96,112 +113,24 @@
 
     <div class="page-body">
         <div id="centerAlign">
-            <h1>JavaScript Garage Project</h1>
-            <p>
-                This task was to create a webpage simulated a garage checking in and out cars and and getting quotes for damage.
-            </p>
+            <h1>DOM 1</h1>
+            This project was an introduction to working with the DOM, it very cimply creates a paragraph element, then changes the text
+            of that element, then deletes it.
+            <br> Each task is done with a button press.
+            <br>
+            <br>
+            <div id="div1">
+                <input type="text" name="input" id="input1" value="">
+                <br>
+                <button type="button" onclick="createParaElement()">Click to create a new paragraph</button>
+                <br>
+                <button type="button" onclick="changeText()">Click to change the text.</button>
+                <br>
+                <button type="button" onclick="deletePara()">Click to delete paragraph.</button>
+            </div>
         </div>
-        <div id="wrapper">
-            <section>
-                <h1>Garage</h1>
-                <br>
-                <div id="carsToAdd">
-                    <h4>Possible Cars to Add</h4>
-                    <select name="cars" id="carSelectIn" onmouseup="changeLicencePlateText('genLicenceFromListIn', 'carSelectIn')">
-                        <option value="Volvo-CS15 NET-4-3">Volvo</option>
-                        <option value="Saab-BG98 KJF-4-5">Saab</option>
-                        <option value="Fiat-MJ26 LAS-4-2">Fiat</option>
-                        <option value="Audi-AD34 HBR-3-1">Audi</option>
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListIn'></p>
-                </div>
-                <div id="carsToRemove">
-                    <h4>Possible Cars to Remove</h4>
-                    <select name="cars" id="carSelectOut" onmouseup="changeLicencePlateText('genLicenceFromListOut', 'carSelectOut')">
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListOut'></p>
-                </div>
-
-
-
-                <div id="carsToAdd">
-                    <h3>Check In</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkInCar()">Confirm Check In</button>
-                    <br>
-                </div>
-                <div id="carsToRemove">
-                    <h3>Check Out</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkOutCar()">Confirm Check Out</button>
-                    <br>
-                </div>
-                <div id="outputsDiv">
-                    <br>
-                    <br>
-                    <div>
-                        <h3>Output</h3>
-                        <button type="button" onclick="outputContents()">Output Garage Contents</button>
-                        <div id="output">
-
-                        </div>
-                    </div>
-                    <div>
-                        <H3>Calculate Bill</H3>
-                        <p>Select car from checkout list.</p>
-                        <button onclick="billToPage()">Calculate bill</button>
-                        <div id="billOutput"></div>
-                    </div>
-                </div>
-                <br>
-            </section>
-            <hr>
-            <section>
-                <br>
-                <h1>Car Creator</h1>
-                <br>
-                <div id="carCreator">
-                    Car Make
-                    <br>
-                    <input type="text" id="carMakeIn">
-                    <br> Car Licence Plate
-                    <br>
-                    <input type="text" id="licencePlateIn">
-                    <br> Number of Wheels
-                    <br>
-                    <input type="number" id="numWheelsIn">
-                    <br> Number of Faults
-                    <br>
-                    <input type="number" id="faultsIn">
-                    <br>
-                    <button type="button" id="carCreatorConfirm" onclick="makeNewCar()">Confirm Car Creation</button>
-                    <br> Add most recent car to 'Possible Cars to Add'
-                    <br>
-                    <button type="button" id="newCarToDrop" onclick="addNewCarToOptions()">Add Car</button>
-                </div>
-            </section>
-            <hr>
-            <section>
-                <div id="carCreator">
-                    <br>
-                    <br>
-                    <h1>Admin Interface</h1>
-                    <br>
-                    <div>
-                        <textarea type="text" name="commandLine" id="cliIn" cols="100" rows="10" onkeydown="if (event.keyCode == 13) commandWord()"></textarea>
-                    </div>
-                    <br>
-                    <div>Valid Command Words
-                        <br> 'check in', 'check out', 'output', 'create car'</div>
-                </div>
-            </section>
-        </div>
-
     </div>
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

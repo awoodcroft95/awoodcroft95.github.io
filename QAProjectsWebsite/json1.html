@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Anthony Woodcroft - Projects Website - Garage Project</title>
+    <title>Anthony Woodcroft - Projects Website - JSON 1</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -16,9 +16,73 @@
     <!-- Custom styles for this template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/garage.css">
+    <script type="text/javascript">
+        'use strict';
+        let count = 0;
+        let requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
+        let request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "json";
+        request.send();
+        request.onload = function () {
+            let superHeroes = request.response;
+            let myH1 = document.createElement("h1");
+            myH1.textContent = superHeroes["squadName"];
+            document.getElementById("mainDiv").appendChild(myH1);
+            for (let key in superHeroes) {
+                let myPara = document.createElement("p");
+                if (superHeroes[key] === "Super hero squad") {
+                    //do nothing
+                } else if (key === "members") {
+                    let herosDiv = document.createElement("div");
+                    herosDiv.setAttribute("id", "herosDiv");
+                    document.getElementById("mainDiv").appendChild(herosDiv);
+                    superHeroes[key].forEach(function (element) {
+                        //element = the hero curruntly being worked on
+                        let heroDivName = document.createElement("div");
+                        heroDivName.setAttribute("id", element.name + "Div")
+                        document.getElementById("herosDiv").appendChild(heroDivName);
+                        for (let heroKey in element) {
+                            let heroInfo;
 
-    <script src="js/garageScript.js"></script>
+                            if (heroKey === "name") {
+                                heroInfo = document.createElement("h2");
+                                heroInfo.innerHTML = heroKey + ": " + element[heroKey];
+                                document.getElementById(element.name + "Div").appendChild(heroInfo);
+                            } else if (heroKey === "powers") {
+                                heroInfo = document.createElement("h3");
+                                heroInfo.innerHTML = "Powers";
+                                document.getElementById(element.name + "Div").appendChild(heroInfo);
+                                //add new heading - Powers
+
+                                let powerList = document.createElement("ul");
+                                powerList.setAttribute("id", element.name + count);
+                                document.getElementById(element.name + "Div").appendChild(powerList);
+                                //add new unordered list
+
+                                element[heroKey].forEach(function (powerElement) {
+                                    let power = document.createElement("li");
+                                    power.innerHTML = powerElement;
+                                    document.getElementById(element.name + count).appendChild(power);
+                                    //add powers to the unordered list
+                                }, this);
+
+                                count++;
+                            } else {
+                                heroInfo = document.createElement("p");
+                                heroInfo.innerHTML = heroKey + ": " + element[heroKey];
+                                document.getElementById(element.name + "Div").appendChild(heroInfo);
+                            }
+                        }
+                    }, this);
+                } else {
+                    myPara.innerHTML = key + ": " + superHeroes[key];
+                    document.getElementById("mainDiv").appendChild(myPara);
+                }
+            }
+        }
+    </script>
+
 </head>
 
 <body class="custom-body">
@@ -96,112 +160,16 @@
 
     <div class="page-body">
         <div id="centerAlign">
-            <h1>JavaScript Garage Project</h1>
-            <p>
-                This task was to create a webpage simulated a garage checking in and out cars and and getting quotes for damage.
-            </p>
+            <h1>JSON 1 - Super Heros</h1>
+            This task was to get data from a JSON file and output it to the web page.
         </div>
-        <div id="wrapper">
-            <section>
-                <h1>Garage</h1>
-                <br>
-                <div id="carsToAdd">
-                    <h4>Possible Cars to Add</h4>
-                    <select name="cars" id="carSelectIn" onmouseup="changeLicencePlateText('genLicenceFromListIn', 'carSelectIn')">
-                        <option value="Volvo-CS15 NET-4-3">Volvo</option>
-                        <option value="Saab-BG98 KJF-4-5">Saab</option>
-                        <option value="Fiat-MJ26 LAS-4-2">Fiat</option>
-                        <option value="Audi-AD34 HBR-3-1">Audi</option>
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListIn'></p>
-                </div>
-                <div id="carsToRemove">
-                    <h4>Possible Cars to Remove</h4>
-                    <select name="cars" id="carSelectOut" onmouseup="changeLicencePlateText('genLicenceFromListOut', 'carSelectOut')">
-                    </select>
-                    <br> Licence Plate of Selected Car
-                    <p id='genLicenceFromListOut'></p>
-                </div>
+        <div id="list5">
+            <div id="mainDiv">
 
-
-
-                <div id="carsToAdd">
-                    <h3>Check In</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkInCar()">Confirm Check In</button>
-                    <br>
-                </div>
-                <div id="carsToRemove">
-                    <h3>Check Out</h3>
-                    Licence Plate
-                    <br>
-                    <button type="button" onclick="checkOutCar()">Confirm Check Out</button>
-                    <br>
-                </div>
-                <div id="outputsDiv">
-                    <br>
-                    <br>
-                    <div>
-                        <h3>Output</h3>
-                        <button type="button" onclick="outputContents()">Output Garage Contents</button>
-                        <div id="output">
-
-                        </div>
-                    </div>
-                    <div>
-                        <H3>Calculate Bill</H3>
-                        <p>Select car from checkout list.</p>
-                        <button onclick="billToPage()">Calculate bill</button>
-                        <div id="billOutput"></div>
-                    </div>
-                </div>
-                <br>
-            </section>
-            <hr>
-            <section>
-                <br>
-                <h1>Car Creator</h1>
-                <br>
-                <div id="carCreator">
-                    Car Make
-                    <br>
-                    <input type="text" id="carMakeIn">
-                    <br> Car Licence Plate
-                    <br>
-                    <input type="text" id="licencePlateIn">
-                    <br> Number of Wheels
-                    <br>
-                    <input type="number" id="numWheelsIn">
-                    <br> Number of Faults
-                    <br>
-                    <input type="number" id="faultsIn">
-                    <br>
-                    <button type="button" id="carCreatorConfirm" onclick="makeNewCar()">Confirm Car Creation</button>
-                    <br> Add most recent car to 'Possible Cars to Add'
-                    <br>
-                    <button type="button" id="newCarToDrop" onclick="addNewCarToOptions()">Add Car</button>
-                </div>
-            </section>
-            <hr>
-            <section>
-                <div id="carCreator">
-                    <br>
-                    <br>
-                    <h1>Admin Interface</h1>
-                    <br>
-                    <div>
-                        <textarea type="text" name="commandLine" id="cliIn" cols="100" rows="10" onkeydown="if (event.keyCode == 13) commandWord()"></textarea>
-                    </div>
-                    <br>
-                    <div>Valid Command Words
-                        <br> 'check in', 'check out', 'output', 'create car'</div>
-                </div>
-            </section>
+            </div>
         </div>
-
     </div>
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
