@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Anthony Woodcroft - Projects Website</title>
+    <title>Anthony Woodcroft - Projects Website - Garage Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://awoodcroft95.github.io/index.html">Old Home</a>
@@ -124,7 +124,8 @@
                     <br>
                 </div>
                 <div id="outputsDiv">
-                    <br><br>
+                    <br>
+                    <br>
                     <div>
                         <h3>Output</h3>
                         <button type="button" onclick="outputContents()">Output Garage Contents</button>
@@ -164,6 +165,21 @@
                     <br> Add most recent car to 'Possible Cars to Add'
                     <br>
                     <button type="button" id="newCarToDrop" onclick="addNewCarToOptions()">Add Car</button>
+                </div>
+            </section>
+            <hr>
+            <section>
+                <div id="carCreator">
+                    <br>
+                    <br>
+                    <h1>Admin Interface</h1>
+                    <br>
+                    <div>
+                        <textarea type="text" name="commandLine" id="cliIn" cols="100" rows="10" onkeydown="if (event.keyCode == 13) commandWord()"></textarea>
+                    </div>
+                    <br>
+                    <div>Valid Command Words
+                        <br> 'check in', 'check out', 'output', 'create car'</div>
                 </div>
             </section>
         </div>

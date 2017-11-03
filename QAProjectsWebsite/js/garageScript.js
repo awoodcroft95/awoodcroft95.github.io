@@ -125,3 +125,68 @@ function addNewCarToOptions() {
     let newCar = notGarage.pop();
     carToSelection(newCar, carToString(newCar), "carSelectIn");
 }
+
+function commandWord() {
+    let wasOutput = false;
+    let input = document.getElementById("cliIn").value;
+    input = input.toLowerCase();
+    let inputWords = input.split(" ");
+    let firstWord = inputWords[0];
+    if (firstWord === "create") {
+        if (inputWords[1] === "car" && inputWords.length === 6) {
+            addCarToGarage(inputWords[2], inputWords[3], inputWords[4], inputWords[5], notGarage);
+        }
+        else {
+            document.getElementById("cliIn").value = "This is not a valid command, this system can currently only create cars."
+        }
+    } else if (firstWord === "output") {
+        let outputStr = ""
+        garageContents.forEach(function (element) {
+            outputStr += `${element.name} ${element.licencePlate} 
+`;
+        }, this);
+        document.getElementById("cliIn").value = outputStr;
+        wasOutput = true;
+    } else if (firstWord === "check") {
+        if (inputWords[1] === "in" && inputWords.length === 3) {
+            notGarage.forEach(function (element) {
+                if (element.licencePlate === inputWords[2]) {
+                    //compare licencePlate given with what's in the notGarage
+                    garageContents.push(element);
+                    notGarage.splice(element.indexOf, 1);
+                    //move car from notGarage to Garage
+                } else {
+                    document.getElementById("cliIn").value = "This car doesn't exist in the world, please try again.";
+                    //this car doens't exist in the world, check you entered the licence plate correctly
+                }
+            });
+        } else if (inputWords[1] === "out" && inputWords.length === 3) {
+            garageContents.forEach(function (element) {
+                if (element.licencePlate === inputWords[2]) {
+                    //move car from Garage to notGarage
+                    notGarage.push(element);
+                    garageContents.splice(element.indexOf, 1);
+                } else {
+                    //this car doens't exist in the garage, check you entered the licence plate correctly
+                    document.getElementById("cliIn").value = "This car doesn't exist in the garage, please check your entry.";
+                }
+            })
+        } else {
+            document.getElementById("cliIn").value = "Not a valid command word, use 'check in' or 'check out' followed by the registration number.";
+            //output "not a valid command word, select either to check in or check out
+        }
+    } else {
+        document.getElementById("cliIn").value = "Not a valid command word."
+        //output "not a valid command word"
+    }
+    if (wasOutput){
+        window.setTimeout(timeOutReset, 10000)
+    } else {
+        window.setTimeout(timeOutReset, 1000)
+    }
+    
+}
+
+function timeOutReset(){
+    document.getElementById("cliIn").value = "";
+}
